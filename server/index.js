@@ -14,17 +14,20 @@ import { app,server } from "./socket/socket.js";
 
 // const app = express();
 dotenv.config();
+const port = process.env.PORT || 8000;
+
+const corsOptions = {
+    origin: 'https://xoolve-career-hub.netlify.app',
+    credentials: true,
+  };
+  app.use(cors(corsOptions));
+  app.options('*', cors(corsOptions)); // Enable pre-flight requests
+  
+
+
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
-
-const corsOptions = {
-    origin:'xoolve-career-vercel-gdkm.vercel.app',
-    credentials:true
-}
-app.use(cors(corsOptions));
-
-const port = process.env.PORT || 8000;
 
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/company", companyRoute);
