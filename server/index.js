@@ -19,10 +19,9 @@ const port = process.env.PORT || 8000;
 const corsOptions = {
     origin: 'https://xoolve-career-hub.netlify.app',
     credentials: true,
-  };
-  app.use(cors(corsOptions));
-  app.options('*', cors(corsOptions)); // Enable pre-flight requests
-  
+};
+app.use(cors(corsOptions));
+
 
 
 app.use(express.json());
