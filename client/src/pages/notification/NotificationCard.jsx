@@ -4,7 +4,7 @@ import { FaCheckCircle, FaTrashAlt } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
 const NotificationCard = ({ notification, setUnseenNotifications, setSeenNotifications, unseenNotifications, seenNotifications }) => {
-    const USER_API_END_POINT = "http://localhost:8888/api/v1/user";
+    const USER_API_END_POINT = "xoolve-career-vercel.vercel.app/api/v1/user";
     const navigate = useNavigate();
 
     const markAsSeen = async () => {

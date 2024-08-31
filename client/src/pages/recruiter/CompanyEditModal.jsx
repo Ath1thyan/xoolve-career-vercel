@@ -3,7 +3,7 @@ import { AiFillCloseCircle } from 'react-icons/ai';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
 
-export const COMPANY_API_END_POINT = "http://localhost:8888/api/v1/company";
+export const COMPANY_API_END_POINT = "xoolve-career-vercel.vercel.app/api/v1/company";
 
 const CompanyEditModal = ({ companyId, onClose }) => {
   const [companyData, setCompanyData] = useState({

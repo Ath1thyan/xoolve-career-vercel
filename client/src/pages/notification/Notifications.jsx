@@ -11,7 +11,7 @@ const NotificationsPage = () => {
   const [seenNotifications, setSeenNotifications] = useState([]);
   const [currentTab, setCurrentTab] = useState(0);
 
-  const USER_API_END_POINT = "http://localhost:8888/api/v1/user";
+  const USER_API_END_POINT = "xoolve-career-vercel.vercel.app/api/v1/user";
 
   useEffect(() => {
     const fetchNotifications = async () => {
