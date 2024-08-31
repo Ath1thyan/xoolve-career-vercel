@@ -53,9 +53,9 @@ const Register = () => {
 
         try {
             const res = await axios.post(`${USER_API_END_POINT}/register`, formData, {
-                headers: { 'Content-Type': "multipart/form-data" },
+                headers: { 'Content-Type': 'multipart/form-data' },
                 withCredentials: true,
-            });
+              })
 
             if (res.data.success) {
                 navigate("/login");
