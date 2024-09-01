@@ -17,7 +17,7 @@ dotenv.config();
 const port = process.env.PORT || 8000;
 
 const corsOptions = {
-    origin: 'https://xoolve-career-hub.netlify.app',
+    origin: 'xoolve-career-vercel-gdkm.vercel.app',
     credentials: true,
 };
 app.use(cors(corsOptions));
