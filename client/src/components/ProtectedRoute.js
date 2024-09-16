@@ -5,47 +5,46 @@ import axios from 'axios';
 import { setUser } from '../redux/userSlice';
 import { hideLoading, showLoading } from '../redux/alertSlice';
 
-const ProtectedRoute = (props) => {
-
+const ProtectedRoute = ({ children }) => {
     const { user } = useSelector(state => state.user);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const getUser = async () => {
-        try {
-            dispatch(showLoading())
-            const response = await axios.post('/api/user/get-user-info-by-id', {
-                token: localStorage.getItem('token')
-            }, {
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+    useEffect(() => {
+        const getUser = async () => {
+            try {
+                dispatch(showLoading());
+                const response = await axios.post('/api/user/get-user-info-by-id', {
+                    token: localStorage.getItem('token')
+                }, {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+                dispatch(hideLoading());
+                if (response.data.success) {
+                    dispatch(setUser(response.data.data));
+                } else {
+                    localStorage.clear();
+                    navigate('/login');
                 }
-            });
-            dispatch(hideLoading())
-            if (response.data.success) {
-                dispatch(setUser(response.data.data));
-            } else {
+            } catch (error) {
+                dispatch(hideLoading());
                 localStorage.clear();
                 navigate('/login');
             }
-        } catch (error) {
-            dispatch(hideLoading());
-            localStorage.clear();
-            navigate('/login');
-        }
-    }
+        };
 
-    useEffect(() => {
-        if (!user) {
+        if (!user && localStorage.getItem('token')) {
             getUser();
         }
-    }, [])
+    }, [user, navigate, dispatch]);
 
-    if (localStorage.getItem('token')) {
-        return props.children;
+    if (user || localStorage.getItem('token')) {
+        return children;
     }
 
-    return <Navigate to='/login' />;
-}
+    return <Navigate to="/login" />;
+};
 
 export default ProtectedRoute;

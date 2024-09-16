@@ -12,7 +12,7 @@ const Layout = ({ children }) => {
     const { user } = useSelector(state => state.user);
     const [unseenCount, setUnseenCount] = useState(0);
 
-    const USER_API_END_POINT = "xoolve-career-vercel.vercel.app/api/v1/user";
+    const USER_API_END_POINT = "http://localhost:8888/api/v1/user";
 
     useEffect(() => {
         const fetchUnseenNotifications = async () => {
