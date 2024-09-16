@@ -17,7 +17,7 @@ dotenv.config();
 const port = process.env.PORT || 8000;
 
 const corsOptions = {
-    origin: 'xoolve-career-vercel-gdkm.vercel.app',
+    origin: 'http://localhost:5173',
     credentials: true,
 };
 app.use(cors(corsOptions));
